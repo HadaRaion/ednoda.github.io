@@ -1,0 +1,66 @@
+@use "mixin" as *;
+
+:root {
+  --font-heading: "MuseoModerno", sans-serif;
+  --font-sans: "Hanken Grotesk", sans-serif;
+  --main-padding: 8rem;
+  // Color
+  --black: #030712;
+  --white: #ffffff;
+  --red: #eb455f;
+  --yellow: #ffd703;
+  --green: #37a662;
+  --blue: #332fd0;
+  --purple: #3f0071;
+  --light-gray: #f9fafb;
+  --light-yellow: #fcffe7;
+  --light-blue: #bad7e9;
+
+  // Size
+  --site--margin: clamp(1rem, 0.428rem + 2.86vw, 3rem);
+  --size--2rem: clamp(1.75rem, 1.678rem + 0.36vw, 2rem);
+  --size--2-5rem: clamp(2rem, 1.858rem + 0.71vw, 2.5rem);
+  --size--3rem: clamp(2.25rem, 2.036rem + 1.07vw, 3rem);
+  --size--3-5rem: clamp(2.375rem, 2.053rem + 1.61vw, 3.5rem);
+  --size--4rem: clamp(2.5rem, 2.072rem + 2.14vw, 4rem);
+  --size--4-5rem: clamp(2.75rem, 2.25rem + 2.5vw, 4.5rem);
+  --size--5rem: clamp(3rem, 2.428rem + 2.86vw, 5rem);
+  --size--5-5rem: clamp(3.25rem, 2.608rem + 3.21vw, 5.5rem);
+  --size--6rem: clamp(3.5rem, 2.786rem + 3.57vw, 6rem);
+  --size--6-5rem: clamp(3.75rem, 2.964rem + 3.93vw, 6.5rem);
+  --size--7rem: clamp(4rem, 3.142rem + 4.29vw, 7rem);
+  --size--7-5rem: clamp(4.25rem, 3.322rem + 4.64vw, 7.5rem);
+  --size--8rem: clamp(4.5rem, 3.5rem + 5vw, 8rem);
+  --size--8-5rem: clamp(4.75rem, 3.678rem + 5.36vw, 8.5rem);
+  --size--9rem: clamp(5rem, 3.858rem + 5.71vw, 9rem);
+  --size--9-5rem: clamp(5.25rem, 4.036rem + 6.07vw, 9.5rem);
+  --size--10rem: clamp(5.5rem, 4.214rem + 6.43vw, 10rem);
+  --size--11rem: clamp(5.75rem, 4.25rem + 7.5vw, 11rem);
+  --size--12rem: clamp(6rem, 4.286rem + 8.57vw, 12rem);
+  --size--13rem: clamp(6.5rem, 4.642rem + 9.29vw, 13rem);
+  --size--14rem: clamp(7rem, 5rem + 10vw, 14rem);
+  --size--15rem: clamp(7.5rem, 5.358rem + 10.71vw, 15rem);
+  --size--16rem: clamp(8rem, 5.714rem + 11.43vw, 16rem);
+
+  // --section-space: clamp(7.23rem, 5.444rem + 8.93vw, 13.48rem);
+  --section-space--large: clamp(5.17rem, 4.062rem + 5.54vw, 9.05rem);
+  --section-space--main: clamp(3.69rem, 3.01rem + 3.4vw, 6.07rem);
+  --section-space--small: clamp(2.5rem, 2.072rem + 2.14vw, 4rem);
+}
+
+@include media(sm-desktop) {
+  :root {
+    --main-padding: 6rem;
+  }
+}
+
+@include media(tablet) {
+  :root {
+    --main-padding: 2rem;
+  }
+}
+@include media(phone) {
+  :root {
+    --main-padding: 1.25rem;
+  }
+}

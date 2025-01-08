@@ -1,0 +1,73 @@
+@use "../base/mixin" as *;
+
+.benefit {
+  padding-block: var(--section-space--main);
+
+  h2 {
+    position: relative;
+    color: transparent;
+    white-space: nowrap;
+
+    &:before {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: attr(data-text);
+      color: var(--black);
+      white-space: nowrap;
+    }
+  }
+  ul {
+    margin-top: var(--section-space--main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--size--3-5rem);
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 64rem;
+    background-color: var(--light-gray);
+    padding: var(--size--3-5rem) var(--size--4rem);
+
+    @include media(tablet) {
+      flex-direction: column;
+      align-items: start;
+      gap: 2rem;
+    }
+
+    @include media(phone) {
+      max-width: 22rem;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__text {
+    flex: 1;
+    display: grid;
+    gap: 2rem;
+
+    @include media(phone) {
+      gap: 0.75rem;
+    }
+  }
+
+  &__icon {
+    aspect-ratio: 1/1;
+    width: 100%;
+    max-width: 15rem;
+    background-color: var(--light-yellow);
+
+    @include media(tablet) {
+      order: -1;
+    }
+  }
+}

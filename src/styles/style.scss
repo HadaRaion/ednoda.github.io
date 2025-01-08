@@ -1,0 +1,14 @@
+@use "./base/variable.scss";
+@use "./base/reset.scss";
+@use "./base/utility.scss";
+@use "./base/typography.scss";
+
+@use "./components/button.scss";
+
+@use "./section/hero.scss";
+@use "./section/benefit.scss";
+@use "./section/instruction.scss";
+@use "./section/pricing.scss";
+@use "./section/faq.scss";
+@use "./section/contact.scss";
+@use "./section/footer.scss";

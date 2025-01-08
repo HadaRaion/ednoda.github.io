@@ -1,0 +1,33 @@
+@use "../base/mixin" as *;
+
+.button {
+  display: inline-block;
+  padding: 1rem;
+  background-color: var(--blue);
+  color: #fff;
+  font-weight: 700;
+
+  @include media(phone) {
+    padding: 0.75rem;
+  }
+
+  &--full {
+    width: 100%;
+    text-align: center;
+  }
+
+  &--lg {
+    padding-inline: var(--size--8rem);
+    font-size: 1.5rem;
+
+    @include media(tablet) {
+      padding-inline: var(--size--4rem);
+      font-size: 1.25rem;
+    }
+
+    @include media(phone) {
+      padding-inline: var(--size--2rem);
+      font-size: 1rem;
+    }
+  }
+}

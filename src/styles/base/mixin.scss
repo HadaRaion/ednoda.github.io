@@ -1,0 +1,22 @@
+@mixin media($media) {
+	@if $media == 'sm-desktop' {
+		@media (max-width: 90em) { /* 1440px */
+			@content;
+		}
+	} @else if $media == 'tablet' {
+		@media (max-width: 64em)  { /* 1024px */
+			@content;
+		}
+	} @else if $media == 'phone' { 
+		@media (max-width: 48em) { /* 768px */
+			@content;
+		}
+	}
+}
+
+/* 25em 400px */
+/* 30em 480px */
+/* 48em 768px */
+/* 64em 1024px */
+/* 80em 1280px */
+/* 90em 1440px */

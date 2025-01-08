@@ -1,0 +1,143 @@
+@use "../base/mixin" as *;
+$gray: #9ca3af;
+
+.instruction {
+  padding-block: var(--section-space--main);
+  background-color: var(--black);
+  color: var(--white);
+
+  --step-number-space: 10rem;
+
+  @include media(tablet) {
+    --step-number-space: 6rem;
+  }
+
+  h2 {
+    max-width: 8ch;
+    line-height: 1.2;
+  }
+
+  ul {
+    position: relative;
+    margin-left: var(--main-padding);
+    margin-top: var(--section-space--large);
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-space--main);
+
+    &:before {
+      content: "";
+      background-color: $gray;
+      position: absolute;
+      width: 0.2rem;
+      top: 1rem;
+      left: 4rem;
+      bottom: 21%;
+
+      @include media(tablet) {
+        left: 2.54rem;
+      }
+
+      @include media(phone) {
+        display: none;
+      }
+    }
+  }
+
+  li {
+    display: flex;
+    gap: 2rem;
+
+    @include media(tablet) {
+      display: grid;
+    }
+
+    .step-number {
+      width: 5rem;
+      height: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--black);
+      border: 0.2rem solid $gray;
+      border-radius: 50%;
+      color: $gray;
+      font-size: 3.5rem;
+      position: absolute;
+      top: -0.8rem;
+      left: 1.5rem;
+      transform: scale(0.85);
+      transition: all 0.4s ease;
+
+      @include media(tablet) {
+        left: 0;
+      }
+
+      @include media(phone) {
+        position: relative;
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    &.active {
+      .step-number {
+        border-color: var(--red);
+        background: var(--red);
+        color: var(--black);
+        transform: scale(1);
+      }
+    }
+
+    &:nth-child(even).active {
+      .step-number {
+        border-color: var(--green);
+        background: var(--green);
+      }
+    }
+  }
+
+  &__text {
+    position: relative;
+    padding-left: var(--step-number-space);
+    text-wrap: pretty;
+
+    @include media(tablet) {
+      padding-right: var(--main-padding);
+    }
+
+    @include media(phone) {
+      padding-left: 0;
+    }
+
+    h3 {
+      line-height: 1.1;
+    }
+
+    p {
+      margin-top: 1rem;
+
+      @include media(phone) {
+        margin-top: 0.75rem;
+      }
+    }
+  }
+
+  &__media {
+    flex: 0 0 50%;
+    aspect-ratio: 16/9;
+    border: 1px solid $gray;
+
+    @include media(tablet) {
+      display: block;
+      width: calc(100% - var(--step-number-space));
+      margin-left: auto;
+    }
+
+    @include media(phone) {
+      width: 100%;
+    }
+  }
+}
