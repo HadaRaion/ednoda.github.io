@@ -64,7 +64,6 @@
     aspect-ratio: 1/1;
     width: 100%;
     max-width: 15rem;
-    background-color: var(--light-yellow);
 
     @include media(tablet) {
       order: -1;
