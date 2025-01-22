@@ -5,6 +5,7 @@
     position: relative;
     color: transparent;
     white-space: nowrap;
+    transform: translate3d(calc(-25vw * var(--progress)), 0, 0);
 
     &:before {
       display: block;

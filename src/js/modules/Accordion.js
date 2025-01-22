@@ -1,6 +1,8 @@
 export default class Accordion {
   constructor(container, options = {}) {
     this.container = document.querySelector(container);
+    // this.items = this.container.querySelectorAll('.faq__item');
+    // this.triggers = this.container.querySelectorAll('.faq__question');
     
     this.options = {
       initialActive: 0,
