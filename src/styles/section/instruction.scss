@@ -128,10 +128,11 @@ $gray: #9ca3af;
   &__media {
     flex: 0 0 50%;
     aspect-ratio: 16/9;
-    border: 1px solid $gray;
+    max-width: 60%;
 
     @include media(tablet) {
       display: block;
+      max-width: 100%;
       width: calc(100% - var(--step-number-space));
       margin-left: auto;
     }

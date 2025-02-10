@@ -42,6 +42,27 @@ new DotLottie({
   src: "/lottie/track.lottie",
 });
 
+new DotLottie({
+  autoplay: true,
+  loop: true,
+  canvas: document.querySelector("#step-1"),
+  src: "/lottie/step-1.lottie",
+});
+
+new DotLottie({
+  autoplay: true,
+  loop: true,
+  canvas: document.querySelector("#step-2"),
+  src: "/lottie/step-2.lottie",
+});
+
+new DotLottie({
+  autoplay: true,
+  loop: true,
+  canvas: document.querySelector("#step-3"),
+  src: "/lottie/step-3.lottie",
+});
+
 function initCardRevealAnimation() {
   const cards = document.querySelectorAll('[data-reveal="card-reveal"]');
 
