@@ -1,14 +1,11 @@
-import SplitType from "split-type";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { createAnimatedText } from "../utils/textAnimation";
 
 export function initHeroAnimation() {
-  const heroLogo = new SplitType("#hero h1", { types: "chars" });
-  const brandDesc = new SplitType("#hero p", { types: "lines" });
-  const logoChars = heroLogo.chars;
-  const descLines = brandDesc.lines;
+  const heroLogo = createAnimatedText("#hero h1", { type: "chars" });
+  const brandDesc = createAnimatedText("#hero p", { type: "lines" });
 
-  gsap.set(logoChars, {
+  gsap.set(heroLogo.chars, {
     y: -100,
     opacity: 0,
   });
@@ -16,7 +13,7 @@ export function initHeroAnimation() {
   const heroTl = gsap.timeline();
 
   heroTl
-    .to(logoChars, {
+    .to(heroLogo.chars, {
       duration: 1,
       y: 0,
       opacity: 1,
@@ -39,7 +36,7 @@ export function initHeroAnimation() {
       "1.4"
     )
     .from(
-      descLines,
+      brandDesc.lines,
       {
         duration: 1,
         y: 15,

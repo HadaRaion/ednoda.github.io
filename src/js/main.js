@@ -2,11 +2,17 @@ import "../styles/style.scss";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
-import Accordion from "./modules/Accordion";
 import { DotLottie } from "@lottiefiles/dotlottie-web";
-import luge from "@waaark/luge";
+// import luge from "@waaark/luge";
+import { createAnimatedText } from "./utils/textAnimation";
+import Accordion from "./modules/Accordion";
 import { initHeroAnimation } from "./modules/Hero";
-import SplitType from "split-type";
+import { initInstructionAnimation } from "./modules/Instruction";
+
+new Accordion("#faq", {
+  initialActive: 0,
+  maxActive: 1,
+});
 
 gsap.registerPlugin(ScrollTrigger);
 const lenis = new Lenis();
@@ -20,6 +26,9 @@ gsap.ticker.lagSmoothing(0);
 
 // Hero 애니메이션 초기화
 initHeroAnimation();
+
+// Instruction 애니메이션 초기화
+initInstructionAnimation().catch(console.error);
 
 new DotLottie({
   autoplay: true,
@@ -40,27 +49,6 @@ new DotLottie({
   loop: true,
   canvas: document.querySelector("#benefit3"),
   src: "/lottie/track.lottie",
-});
-
-new DotLottie({
-  autoplay: true,
-  loop: true,
-  canvas: document.querySelector("#step-1"),
-  src: "/lottie/step-1.lottie",
-});
-
-new DotLottie({
-  autoplay: true,
-  loop: true,
-  canvas: document.querySelector("#step-2"),
-  src: "/lottie/step-2.lottie",
-});
-
-new DotLottie({
-  autoplay: true,
-  loop: true,
-  canvas: document.querySelector("#step-3"),
-  src: "/lottie/step-3.lottie",
 });
 
 function initCardRevealAnimation() {
@@ -85,14 +73,16 @@ function initCardRevealAnimation() {
 initCardRevealAnimation();
 
 function initTextRevealAnimation() {
-  const texts = document.querySelectorAll('[data-reveal="text-reveal"]');
+  const splitTexts = createAnimatedText('[data-reveal="text-reveal"]', {
+    type: "chars",
+  });
 
-  texts.forEach((text) => {
-    const textsSplit = new SplitType(text, { types: "chars" });
+  splitTexts.forEach(({ element, chars }) => {
+    if (!chars) return;
 
-    gsap.from(textsSplit.chars, {
+    gsap.from(chars, {
       scrollTrigger: {
-        trigger: text,
+        trigger: element,
         start: "top bottom-=100",
         toggleActions: "play none none none",
       },
@@ -105,3 +95,47 @@ function initTextRevealAnimation() {
 }
 
 initTextRevealAnimation();
+
+function initLineRevealAnimation() {
+  const splitLines = createAnimatedText('[data-reveal="line-reveal"]', {
+    type: "line",
+  });
+
+  console.log(splitLines);
+
+  splitLines.forEach(({ element, lines }) => {
+    gsap.from(lines, {
+      scrollTrigger: {
+        trigger: element,
+        start: "top bottom-=100",
+        toggleActions: "play none none none",
+      },
+      y: 20,
+      autoAlpha: 0,
+      ease: "power3.out",
+      stagger: 0.06,
+    });
+  });
+}
+
+initLineRevealAnimation();
+
+function initInfiniteScrollText() {
+  const scrollTexts = document.querySelectorAll(".marquee");
+
+  scrollTexts.forEach((text) => {
+    // ScrollTrigger 설정
+    ScrollTrigger.create({
+      trigger: text,
+      start: "top bottom",
+      end: "bottom top",
+      onUpdate: (self) => {
+        // progress 값을 CSS 변수로 설정 (0 ~ 1)
+        text.style.setProperty("--progress", self.progress);
+      },
+    });
+  });
+}
+
+// 기존 애니메이션 초기화 코드 뒤에 추가
+initInfiniteScrollText();

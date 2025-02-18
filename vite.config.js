@@ -10,4 +10,13 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "./src/styles"),
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+      },
+    },
+    assetsInclude: ["**/*.lottie"], // Lottie 파일 포함
+    copyPublicDir: true, // public 디렉토리 복사
+  },
 });

@@ -1,23 +1,6 @@
 .contact {
   padding-block: var(--section-space--main);
 
-  h2 {
-    position: relative;
-    color: transparent;
-    white-space: nowrap;
-    transform: translate3d(calc(-25vw * var(--progress)), 0, 0);
-
-    &:before {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      content: attr(data-text);
-      color: var(--black);
-      white-space: nowrap;
-    }
-  }
-
   p {
     margin-top: var(--size--4rem);
     max-width: 40ch;

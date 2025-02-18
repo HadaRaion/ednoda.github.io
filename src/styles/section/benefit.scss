@@ -1,24 +1,8 @@
 @use "../base/mixin" as *;
 
 .benefit {
-  padding-block: var(--section-space--main);
+  padding-block: var(--section-space--main) var(--section-space--large);
 
-  h2 {
-    position: relative;
-    color: transparent;
-    white-space: nowrap;
-    transform: translate3d(calc(-25vw * var(--progress)), 0, 0);
-
-    &:before {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      content: attr(data-text);
-      color: var(--black);
-      white-space: nowrap;
-    }
-  }
   ul {
     margin-top: var(--section-space--main);
     display: flex;

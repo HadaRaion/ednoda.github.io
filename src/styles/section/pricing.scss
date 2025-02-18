@@ -34,16 +34,28 @@
 
   &__card {
     background-color: var(--light-gray);
-    padding: var(--size--5rem) var(--size--2rem) var(--size--2rem);
+    padding: var(--size--2rem);
+    position: relative;
+    overflow: hidden;
 
     @include media(phone) {
-      padding: var(--size--3rem) 1.5rem 1.5rem;
+      padding: 1.5rem;
     }
 
     .price-title {
       font-size: 1.25rem;
-      font-weight: 700;
+      font-weight: 600;
       line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--white);
+      background-color: var(--red);
+      padding-block: 0.7rem;
+      position: absolute;
+      width: 15rem;
+      left: -4.2rem;
+      top: 2rem;
+      transform: rotateZ(-45deg);
 
       @include media(phone) {
         font-size: 1.125rem;
@@ -51,21 +63,46 @@
     }
 
     .price {
-      margin-top: 1rem;
+      margin-top: 2rem;
       font-family: var(--font-heading);
       font-weight: 600;
-      font-size: 2.5rem;
+      font-size: 3.8rem;
       line-height: 1;
+      text-align: center;
+      position: relative;
+      padding-left: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+
+      &::before {
+        content: "$";
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-right: 0.2rem;
+      }
+
+      .price-unit {
+        display: inline-block;
+        font-size: 1.25rem;
+        margin: auto 0 0.3rem 0.4rem;
+        font-weight: 500;
+      }
 
       @include media(phone) {
         font-size: 2.25rem;
       }
     }
 
-    .features-title {
-      border-top: 1px solid var(--black);
-      margin-top: 2rem;
-      padding-top: 2rem;
+    .price-description {
+      text-align: center;
+      border-bottom: 1px solid var(--black);
+      margin-top: 1rem;
+      padding-bottom: 2rem;
+      font-size: 1.35rem;
+      font-weight: 500;
+      text-wrap: balance;
+      line-height: 1.2;
 
       @include media(phone) {
         margin-top: 1.5rem;
@@ -87,11 +124,13 @@
       li {
         display: flex;
         gap: 0.5rem;
-        align-items: center;
-        line-height: 1;
+        align-items: flex-start;
+        line-height: 1.5rem;
 
         &::before {
-          content: url("data:image/svg+xml;utf8,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M20.3479 7.56384L9.7479 18.1638C9.65402 18.2585 9.52622 18.3117 9.3929 18.3117C9.25958 18.3117 9.13178 18.2585 9.0379 18.1638L3.6479 12.7738C3.55324 12.68 3.5 12.5522 3.5 12.4188C3.5 12.2855 3.55324 12.1577 3.6479 12.0638L4.3479 11.3638C4.44178 11.2692 4.56958 11.2159 4.7029 11.2159C4.83622 11.2159 4.96402 11.2692 5.0579 11.3638L9.3879 15.6938L18.9379 6.14384C19.1357 5.95205 19.4501 5.95205 19.6479 6.14384L20.3479 6.85384C20.4426 6.94772 20.4958 7.07552 20.4958 7.20884C20.4958 7.34216 20.4426 7.46995 20.3479 7.56384Z' fill='black'/></svg>");
+          width: 1.5rem;
+          height: 1.5rem;
+          content: url("data:image/svg+xml;utf8,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M20.3479 7.56384L9.7479 18.1638C9.65402 18.2585 9.52622 18.3117 9.3929 18.3117C9.25958 18.3117 9.13178 18.2585 9.0379 18.1638L3.6479 12.7738C3.55324 12.68 3.5 12.5522 3.5 12.4188C3.5 12.2855 3.55324 12.1577 3.6479 12.0638L4.3479 11.3638C4.44178 11.2692 4.56958 11.2159 4.7029 11.2159C4.83622 11.2159 4.96402 11.2692 5.0579 11.3638L9.3879 15.6938L18.9379 6.14384C19.1357 5.95205 19.4501 5.95205 19.6479 6.14384L20.3479 6.85384C20.4426 6.94772 20.4958 7.07552 20.4958 7.20884C20.4958 7.34216 20.4426 7.46995 20.3479 7.56384Z' fill='%2337a662'/></svg>");
         }
       }
     }

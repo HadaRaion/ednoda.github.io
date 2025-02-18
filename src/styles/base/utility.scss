@@ -16,3 +16,23 @@
   margin: 0 auto;
   padding-inline: var(--main-padding);
 }
+
+.container-full {
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: var(--main-padding);
+}
+
+.marquee {
+  position: relative;
+  white-space: nowrap;
+  transform: translate3d(calc(-25vw * var(--progress)), 0, 0);
+
+  .marquee-text {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+  }
+}

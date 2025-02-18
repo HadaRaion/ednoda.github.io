@@ -1,11 +1,60 @@
 @use "../base/mixin" as *;
 
 .button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
+  overflow: hidden;
   background-color: var(--blue);
-  color: #fff;
-  font-weight: 700;
+  position: relative;
+
+  & > span {
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    color: #fff;
+    font-weight: 700;
+    z-index: 20;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:after {
+    content: "";
+    width: 0%;
+    height: 100%;
+    background: var(--yellow);
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+    right: 0;
+  }
+
+  &:hover {
+    &::after {
+      right: auto;
+      left: 0;
+      width: 100%;
+    }
+
+    & > span {
+      color: var(--black);
+      animation: scaleUp 0.3s ease-in-out;
+    }
+
+    @keyframes scaleUp {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(0.95);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  }
 
   @include media(phone) {
     padding: 0.75rem;

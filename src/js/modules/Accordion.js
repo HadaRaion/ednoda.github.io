@@ -1,52 +1,84 @@
 export default class Accordion {
+  static CLASSES = {
+    ITEM: "accordion-item",
+    TRIGGER: "accordion-trigger",
+    PANEL: "accordion-panel",
+    ACTIVE: "active",
+  };
+
   constructor(container, options = {}) {
     this.container = document.querySelector(container);
-    // this.items = this.container.querySelectorAll('.faq__item');
-    // this.triggers = this.container.querySelectorAll('.faq__question');
-    
     this.options = {
       initialActive: 0,
       maxActive: 1,
-      ...options
+      ...options,
     };
 
+    this.accordionItems = [];
     this.init();
-    this.bindEvents();
   }
 
   init() {
-    const items = this.container.querySelectorAll('.faq__item');
+    const items = this.container.querySelectorAll(`.${Accordion.CLASSES.ITEM}`);
+
     items.forEach((item, index) => {
+      const trigger = item.querySelector(`.${Accordion.CLASSES.TRIGGER}`);
+      const panel = item.querySelector(`.${Accordion.CLASSES.PANEL}`);
+
+      // 각 아코디언 아이템 초기화
+      this.accordionItems.push({
+        item,
+        trigger,
+        panel,
+      });
+
+      // 트리거 클릭 이벤트 설정
+      trigger.addEventListener("click", () => this.toggleAccordion(index));
+
+      // 초기 상태 설정
       if (index === this.options.initialActive) {
-        item.classList.add('active');
+        this.openAccordion(index);
       } else {
-        item.classList.remove('active');
+        this.closeAccordion(index);
       }
     });
   }
 
-  bindEvents() {
-    this.container.addEventListener('click', (e) => {
-      const trigger = e.target.closest('.faq__question');
-      if (!trigger) return;
+  toggleAccordion(index) {
+    const isExpanded =
+      this.accordionItems[index].trigger.getAttribute("aria-expanded") ===
+      "true";
 
-      const item = trigger.closest('.faq__item');
-      const items = this.container.querySelectorAll('.faq__item');
-      const index = Array.from(items).indexOf(item);
-      
-      this.toggleAccordion(item, items);
-    });
-  }
-
-  toggleAccordion(targetItem, items) {
+    // maxActive가 1일 경우, 다른 모든 아코디언을 닫음
     if (this.options.maxActive === 1) {
-      items.forEach(item => {
-        if (item !== targetItem) {
-          item.classList.remove('active');
+      this.accordionItems.forEach((item, i) => {
+        if (i !== index) {
+          this.closeAccordion(i);
         }
       });
     }
 
-    targetItem.classList.toggle('active');
+    // 현재 아코디언 토글
+    if (isExpanded) {
+      this.closeAccordion(index);
+    } else {
+      this.openAccordion(index);
+    }
+  }
+
+  openAccordion(index) {
+    const { item, trigger, panel } = this.accordionItems[index];
+
+    item.classList.add(Accordion.CLASSES.ACTIVE);
+    trigger.setAttribute("aria-expanded", "true");
+    panel.removeAttribute("hidden");
+  }
+
+  closeAccordion(index) {
+    const { item, trigger, panel } = this.accordionItems[index];
+
+    item.classList.remove(Accordion.CLASSES.ACTIVE);
+    trigger.setAttribute("aria-expanded", "false");
+    panel.setAttribute("hidden", "");
   }
 }

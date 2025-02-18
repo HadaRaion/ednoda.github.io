@@ -2,11 +2,11 @@
 $gray: #9ca3af;
 
 .instruction {
-  padding-block: var(--section-space--main);
+  padding-block: var(--section-space--large);
   background-color: var(--black);
   color: var(--white);
 
-  --step-number-space: 10rem;
+  --step-number-space: 8rem;
 
   @include media(tablet) {
     --step-number-space: 6rem;
@@ -20,10 +20,10 @@ $gray: #9ca3af;
   ul {
     position: relative;
     margin-left: var(--main-padding);
-    margin-top: var(--section-space--large);
+    margin-top: var(--size--12rem);
     display: flex;
     flex-direction: column;
-    gap: var(--section-space--main);
+    gap: var(--size--14rem);
 
     &:before {
       content: "";
@@ -31,8 +31,8 @@ $gray: #9ca3af;
       position: absolute;
       width: 0.2rem;
       top: 1rem;
-      left: 4rem;
-      bottom: 21%;
+      left: 2.4rem;
+      bottom: 25%;
 
       @include media(tablet) {
         left: 2.54rem;
@@ -44,7 +44,7 @@ $gray: #9ca3af;
     }
   }
 
-  li {
+  &__item {
     display: flex;
     gap: 2rem;
 
@@ -65,7 +65,7 @@ $gray: #9ca3af;
       font-size: 3.5rem;
       position: absolute;
       top: -0.8rem;
-      left: 1.5rem;
+      left: 0;
       transform: scale(0.85);
       transition: all 0.4s ease;
 
@@ -114,6 +114,10 @@ $gray: #9ca3af;
 
     h3 {
       line-height: 1.1;
+
+      .instruction__headline {
+        display: block;
+      }
     }
 
     p {
