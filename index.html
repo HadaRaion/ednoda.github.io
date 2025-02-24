@@ -26,20 +26,38 @@
   <meta name="twitter:description"
     content="An educational tool that simplifies classroom game management and lesson planning to save teachers' time and increase student engagement." />
   <meta name="twitter:image" content="/ednoda-og.jpg" />
+  <style>
+    .loading {
+      visibility: hidden;
+    }
+
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <nav>
-
-    </nav>
-  </header>
+  <div id="loader" aria-hidden="true" aria-label="Loading..."></div>
   <section id="hero" class="section hero">
     <div class="container">
       <h1 class="heading heading-lg">Ednoda</h1>
       <h2 class="text-lg">Online tool to Make Teaching Easier for Teachers</h2>
       <p class="text-sm">Effortlessly manage classroom games and simplify lesson planning. Ednoda helps you organize
         question sets and engage students with interactive games—saving you time while keeping your class on track.</p>
-      <a class="button button--lg" href="#"><span>Start your free trial</span></a>
+      <div class="hero__buttons">
+        <a class="button button--lg" href="https://teacher.ednoda.com/auth/register" role="button"><span>Start your free
+            trial</span></a>
+        <a class="button button--lg" href="https://teacher.ednoda.com/" role="button"><span>Go to Dashboard</span></a>
+      </div>
     </div>
   </section>
 
@@ -60,7 +78,8 @@
           <p class="text-normal">We make managing interactive games effortless by handling teams, points, and student
             order so you can focus on teaching.</p>
         </div>
-        <canvas id="benefit1" class="benefit__icon"></canvas>
+        <canvas id="benefit1" class="benefit__icon" aria-label="Simplify Your Classroom" aria-hidden="true"
+          role="img"></canvas>
       </li>
       <li data-reveal="card-reveal">
         <div class="benefit__text">
@@ -68,7 +87,7 @@
           <p class="text-normal">Easily create and organize question sets, saving you time on lesson planning and
             preparation.</p>
         </div>
-        <canvas id="benefit2" class="benefit__icon"></canvas>
+        <canvas id="benefit2" class="benefit__icon" aria-label="Cut Prep Time" aria-hidden="true" role="img"></canvas>
       </li>
       <li data-reveal="card-reveal">
         <div class="benefit__text">
@@ -76,60 +95,59 @@
           <p class="text-normal">Gain insights into how your students are doing with simple data tools to support their
             learning journey.</p>
         </div>
-        <canvas id="benefit3" class="benefit__icon"></canvas>
+        <canvas id="benefit3" class="benefit__icon" aria-label="Track Student Progress" aria-hidden="true"
+          role="img"></canvas>
       </li>
     </ul>
   </section>
   <section id="howTo" class="section instruction">
     <div class="container-full">
       <h2 class="heading heading-sm" data-reveal="text-reveal">How does it work?</h2>
+
+      <ul>
+        <li class="instruction__item">
+          <div class="instruction__text">
+            <h3 class="text-xl"><span class="step-number">1</span><span class="instruction__headline">Set Up Your
+                Classroom</span></h3>
+            <p class="text-normal instruction__desc">Easily create a classroom, add your students, and organize them
+              into teams for seamless management.</p>
+          </div>
+          <canvas class="instruction__media" id="step-1" aria-label="Set Up Your Classroom" aria-hidden="true"
+            role="img"></canvas>
+        </li>
+
+        <li class="instruction__item">
+          <div class="instruction__text">
+            <h3 class="text-xl"><span class="step-number">2</span><span class="instruction__headline">Build Your
+                Question Sets</span></h3>
+            <p class="text-normal instruction__desc">Quickly add multiple-choice, true/false, or single-answer
+              questions. Your question sets are ready to use in any game.</p>
+          </div>
+          <canvas class="instruction__media" id="step-2" aria-label="Build Your Question Sets" aria-hidden="true"
+            role="img"></canvas>
+        </li>
+
+        <li class="instruction__item">
+          <div class="instruction__text">
+            <h3 class="text-xl"><span class="step-number">3</span><span class="instruction__headline">Choose and Start a
+                Game</span></h3>
+            <p class="text-normal instruction__desc">Select a game, question set, and classroom, assign teams and start
+              playing.</p>
+          </div>
+          <canvas class="instruction__media" id="step-3" aria-label="Start a Game" aria-hidden="true"
+            role="img"></canvas>
+        </li>
+
+      </ul>
     </div>
-    <ul>
-      <li class="instruction__item">
-        <div class="instruction__text">
-          <h3 class="text-xl"><span class="step-number">1</span><span class="instruction__headline">Set Up Your
-              Classroom</span></h3>
-          <p class="text-normal instruction__desc">Easily create a classroom, add your students, and organize them into
-            teams for seamless
-            management.</p>
-        </div>
-        <canvas class="instruction__media" id="step-1"></div>
-      </li>
-      <li class="instruction__item">
-
-        <div class="instruction__text">
-          <h3 class="text-xl"><span class="step-number">2</span><span class="instruction__headline">Build Your
-              Question Sets</span></h3>
-          <p class="text-normal instruction__desc">Quickly add multiple-choice, true/false, or single-answer questions.
-            Your sets are
-            ready to use in any game.</p>
-        </div>
-
-        <canvas class="instruction__media" id="step-2"></canvas>
-      </li>
-      <li class="instruction__item">
-        <div class="instruction__text">
-          <h3 class="text-xl"><span class="step-number">3</span><span class="instruction__headline">Choose and
-              Start a Game</span></h3>
-          <p class="text-normal instruction__desc">Select a game, question set, and classroom, assign teams and start
-            playing.</p>
-        </div>
-
-        <canvas class="instruction__media" id="step-3"></canvas>
-      </li>
-
-    </ul>
-
   </section>
+
   <section id="pricing" class="section pricing">
     <div class="container">
       <h2 class="heading heading-sm pricing__title" data-reveal="text-reveal">Pricing</h2>
       <p class="text-normal pricing__description" data-reveal="line-reveal">Unlock unlimited access to Ednoda's
-        comprehensive suite of teacher
-        tools, interactive
-        games,
-        and student analytics. Choose between flexible monthly billing or save with our annual subscription for maximum
-        value.</p>
+        comprehensive suite of teacher tools, interactive games, and student analytics. Choose between flexible monthly
+        billing or save with our annual subscription for maximum value.</p>
       <ul class="pricing__cards">
         <li class="pricing__card" data-reveal="card-reveal">
           <h3 class="price-title">Yearly</h3>
@@ -140,7 +158,8 @@
             <li>Create, manage, and play engaging classroom games</li>
             <li>Track student progress with real-time analytics</li>
           </ul>
-          <a class="button button--full" href="#"><span>Get Started</span></a>
+          <a class="button button--full" href="https://teacher.ednoda.com/auth/register" role="button"><span>Get
+              Started</span></a>
         </li>
 
         <li class="pricing__card" data-reveal="card-reveal">
@@ -152,7 +171,8 @@
             <li>Create, manage, and play engaging classroom games</li>
             <li>Track student progress with real-time analytics</li>
           </ul>
-          <a class="button button--full" href="#"><span>Get Started</span></a>
+          <a class="button button--full" href="https://teacher.ednoda.com/auth/register" role="button"><span>Get
+              Started</span></a>
         </li>
       </ul>
     </div>
@@ -174,10 +194,8 @@
           </h3>
           <div id="answer1" role="region" aria-labelledby="question1" class="accordion-panel">
             <p class="accordion-answer text-sm">Ednoda is an online platform that simplifies lesson planning and
-              classroom
-              management. It helps teachers create question sets, run interactive games, and track student progress to
-              make teaching more
-              engaging and efficient.</p>
+              classroom management. It helps teachers create question sets, run interactive games, and track student
+              progress to make teaching more engaging and efficient.</p>
           </div>
         </li>
 
@@ -195,8 +213,7 @@
           </h3>
           <div id="answer2" role="region" aria-labelledby="question2" class="accordion-panel" hidden>
             <p class="accordion-answer text-sm">Currently, Ednoda offers the Enchanted Forest game, designed to engage
-              students while managing teams, turns, and points. We're working to add more games and activities soon!
-            </p>
+              students while managing teams, turns, and points. We're working to add more games and activities soon!</p>
           </div>
         </li>
 
@@ -213,10 +230,8 @@
           </h3>
           <div id="answer3" role="region" aria-labelledby="question3" class="accordion-panel" hidden>
             <p class="accordion-answer text-sm">Ednoda streamlines lesson prep by helping you create and organize
-              question
-              sets
-              quickly. It also handles classroom management during games, so you can focus on teaching rather than
-              logistics.</p>
+              question sets quickly. It also handles classroom management during games, so you can focus on teaching
+              rather than logistics.</p>
           </div>
         </li>
 
@@ -232,8 +247,7 @@
           </h3>
           <div id="answer4" role="region" aria-labelledby="question4" class="accordion-panel" hidden>
             <p class="accordion-answer text-sm">No technical skills are required! Ednoda is designed to be intuitive and
-              user-friendly, with simple tools for creating classrooms, adding students, and managing games.
-            </p>
+              user-friendly, with simple tools for creating classrooms, adding students, and managing games.</p>
           </div>
         </li>
 
@@ -249,9 +263,7 @@
           </h3>
           <div id="answer5" role="region" aria-labelledby="question5" class="accordion-panel" hidden>
             <p class="accordion-answer text-sm">Yes, Ednoda is flexible enough to handle classrooms of any size, whether
-              you're
-              working with small groups or larger classes.
-            </p>
+              you're working with small groups or larger classes.</p>
           </div>
         </li>
       </ul>
@@ -267,15 +279,15 @@
     <div class="container">
       <p class="text-md">Ednoda is built for teachers like you.<br>Have questions? Let's chat and make learning even
         better!</p>
-      <a class="button button--lg" href="mailto:info@ednoda.com"><span>Contact Us</span></a>
+      <a class="button button--lg" href="mailto:info@ednoda.com" role="button"><span>Contact Us</span></a>
     </div>
   </section>
   <footer class="footer">
     <div class="container">
       <p class="footer__copyright text-sm">© 2025 Ednoda. All rights reserved.</p>
       <ul class="footer__links">
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
+        <li><a href="https://teacher.ednoda.com/privacy-policy">Privacy Policy</a></li>
+        <li><a href="https://teacher.ednoda.com/terms-of-service">Terms of Service</a></li>
       </ul>
     </div>
   </footer>
