@@ -64,6 +64,6 @@ export function initHeroAnimation() {
         height: "100dvh",
         ease: "power2.inOut",
       },
-      "-=0.5"
+      "-=1"
     );
 }

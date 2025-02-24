@@ -3,7 +3,7 @@
 :root {
   --font-heading: "MuseoModerno", sans-serif;
   --font-sans: "Hanken Grotesk", sans-serif;
-  --main-padding: 8rem;
+  --main-padding: clamp(1rem, -0.4rem + 7vw, 8rem);
   // Color
   --black: #030712;
   --white: #ffffff;
@@ -46,21 +46,4 @@
   --section-space--large: clamp(5.17rem, 4.062rem + 5.54vw, 9.05rem);
   --section-space--main: clamp(3.69rem, 3.01rem + 3.4vw, 6.07rem);
   --section-space--small: clamp(2.5rem, 2.072rem + 2.14vw, 4rem);
-}
-
-@include media(sm-desktop) {
-  :root {
-    --main-padding: 6rem;
-  }
-}
-
-@include media(tablet) {
-  :root {
-    --main-padding: 2rem;
-  }
-}
-@include media(phone) {
-  :root {
-    --main-padding: 1.25rem;
-  }
 }

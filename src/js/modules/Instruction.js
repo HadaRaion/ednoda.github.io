@@ -75,15 +75,15 @@ export async function initInstructionAnimation() {
         .from(
           instructionMedia,
           {
-            duration: 1,
-            y: 100,
+            duration: 1.2,
+            y: 80,
             opacity: 0,
             ease: "power2.out",
             onComplete: () => {
               lottieAnimation.play();
             },
           },
-          "0.8"
+          "0.6"
         );
 
       ScrollTrigger.create({

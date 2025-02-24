@@ -19,7 +19,6 @@ $gray: #9ca3af;
 
   ul {
     position: relative;
-    margin-left: var(--main-padding);
     margin-top: var(--size--12rem);
     display: flex;
     flex-direction: column;
@@ -32,15 +31,25 @@ $gray: #9ca3af;
       width: 0.2rem;
       top: 1rem;
       left: 2.4rem;
-      bottom: 25%;
+      bottom: 27%;
+
+      @include media(desktop) {
+        bottom: 23.9%;
+      }
 
       @include media(tablet) {
+        bottom: 25%;
         left: 2.54rem;
       }
 
       @include media(phone) {
         display: none;
       }
+    }
+
+    @include media(phone) {
+      margin-top: var(--size--7rem);
+      gap: var(--size--7rem);
     }
   }
 
@@ -75,10 +84,10 @@ $gray: #9ca3af;
 
       @include media(phone) {
         position: relative;
-        width: 3.5rem;
-        height: 3.5rem;
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
+        width: 3rem;
+        height: 3rem;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
       }
     }
 
@@ -131,7 +140,7 @@ $gray: #9ca3af;
 
   &__media {
     flex: 0 0 50%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 5 / 3;
     max-width: 60%;
 
     @include media(tablet) {

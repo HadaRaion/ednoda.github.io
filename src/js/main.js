@@ -3,53 +3,120 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import { DotLottie } from "@lottiefiles/dotlottie-web";
-// import luge from "@waaark/luge";
 import { createAnimatedText } from "./utils/textAnimation";
 import Accordion from "./modules/Accordion";
 import { initHeroAnimation } from "./modules/Hero";
 import { initInstructionAnimation } from "./modules/Instruction";
 
-new Accordion("#faq", {
-  initialActive: 0,
-  maxActive: 1,
-});
+function waitForResources() {
+  return Promise.all([
+    // check stylesheets
+    ...Array.from(document.styleSheets).map(
+      (stylesheet) =>
+        new Promise((resolve) => {
+          if (stylesheet.href) {
+            const img = new Image();
+            img.onerror = resolve;
+            img.src = stylesheet.href;
+          } else {
+            resolve();
+          }
+        })
+    ),
+    // check images
+    ...Array.from(document.images).map(
+      (img) =>
+        new Promise((resolve) => {
+          if (img.complete) {
+            resolve();
+          } else {
+            img.onload = resolve;
+            img.onerror = resolve;
+          }
+        })
+    ),
+    // check fonts
+    document.fonts.ready,
+  ]);
+}
 
-gsap.registerPlugin(ScrollTrigger);
-const lenis = new Lenis();
-lenis.on("scroll", ScrollTrigger.update);
+// Initialize app
+async function initializeApp() {
+  try {
+    // Check resources
+    await waitForResources();
 
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
-});
+    // Initialize ScrollTrigger and Lenis
+    gsap.registerPlugin(ScrollTrigger);
 
-gsap.ticker.lagSmoothing(0);
+    const lenis = new Lenis();
+    lenis.on("scroll", ScrollTrigger.update);
 
-// Hero 애니메이션 초기화
-initHeroAnimation();
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
 
-// Instruction 애니메이션 초기화
-initInstructionAnimation().catch(console.error);
+    gsap.ticker.lagSmoothing(0);
 
-new DotLottie({
-  autoplay: true,
-  loop: true,
-  canvas: document.querySelector("#benefit1"),
-  src: "/lottie/simplify.lottie",
-});
+    // Initialize Accordion
+    new Accordion("#faq", {
+      initialActive: 0,
+      maxActive: 1,
+    });
 
-new DotLottie({
-  autoplay: true,
-  loop: true,
-  canvas: document.querySelector("#benefit2"),
-  src: "/lottie/timesave.lottie",
-});
+    // 로딩 화면 제거
+    const loader = document.getElementById("loader");
+    document.body.classList.remove("loading");
 
-new DotLottie({
-  autoplay: true,
-  loop: true,
-  canvas: document.querySelector("#benefit3"),
-  src: "/lottie/track.lottie",
-});
+    gsap.to(loader, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        loader.remove();
+      },
+    });
+  } catch (error) {
+    console.error("Error initializing app:", error);
+  }
+
+  // Initialize animations
+  initHeroAnimation();
+  initInfiniteScrollText();
+  initTextRevealAnimation();
+  initLineRevealAnimation();
+  initCardRevealAnimation();
+  await initInstructionAnimation();
+  initLottieAnimations();
+}
+
+// Scroll to top on page refresh
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
+// DOM 로드 완료 시 초기화
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeApp);
+} else {
+  initializeApp();
+}
+
+function initLottieAnimations() {
+  const lottieConfigs = [
+    { id: "#benefit1", src: "/lottie/simplify.lottie" },
+    { id: "#benefit2", src: "/lottie/timesave.lottie" },
+    { id: "#benefit3", src: "/lottie/track.lottie" },
+  ];
+
+  lottieConfigs.forEach((config) => {
+    new DotLottie({
+      autoplay: true,
+      loop: true,
+      canvas: document.querySelector(config.id),
+      src: config.src,
+    });
+  });
+}
 
 function initCardRevealAnimation() {
   const cards = document.querySelectorAll('[data-reveal="card-reveal"]');
@@ -69,8 +136,6 @@ function initCardRevealAnimation() {
     });
   });
 }
-
-initCardRevealAnimation();
 
 function initTextRevealAnimation() {
   const splitTexts = createAnimatedText('[data-reveal="text-reveal"]', {
@@ -94,14 +159,10 @@ function initTextRevealAnimation() {
   });
 }
 
-initTextRevealAnimation();
-
 function initLineRevealAnimation() {
   const splitLines = createAnimatedText('[data-reveal="line-reveal"]', {
     type: "line",
   });
-
-  console.log(splitLines);
 
   splitLines.forEach(({ element, lines }) => {
     gsap.from(lines, {
@@ -112,13 +173,12 @@ function initLineRevealAnimation() {
       },
       y: 20,
       autoAlpha: 0,
-      ease: "power3.out",
-      stagger: 0.06,
+      ease: "power1.out",
+      stagger: 0.15,
+      delay: 0.3,
     });
   });
 }
-
-initLineRevealAnimation();
 
 function initInfiniteScrollText() {
   const scrollTexts = document.querySelectorAll(".marquee");
@@ -136,6 +196,3 @@ function initInfiniteScrollText() {
     });
   });
 }
-
-// 기존 애니메이션 초기화 코드 뒤에 추가
-initInfiniteScrollText();

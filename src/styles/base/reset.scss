@@ -81,3 +81,8 @@ button {
 p {
   text-wrap: pretty;
 }
+
+::selection {
+  color: var(--black);
+  background-color: var(--yellow);
+}

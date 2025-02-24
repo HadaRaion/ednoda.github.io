@@ -1,3 +1,5 @@
+@use "../base/mixin" as *;
+
 .hero {
   min-height: 85dvh;
   display: flex;
@@ -26,7 +28,13 @@
     margin-top: 0.5rem;
   }
 
-  .button {
+  .hero__buttons {
     margin-top: 4rem;
+    display: flex;
+    gap: 1rem;
+
+    @include media(phone) {
+      flex-direction: column;
+    }
   }
 }
